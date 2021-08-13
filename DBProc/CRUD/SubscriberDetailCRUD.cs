@@ -10,6 +10,17 @@ namespace DBProc.CRUD
 {
     public class SubscriberDetailCRUD : BasicAcsess<SubscriberDetail>
     {
+        /// <summary>
+        /// Convert string to enum
+        /// </summary>
+        /// <typeparam name="T">jeneric type</typeparam>
+        /// <param name="value">string</param>
+        /// <returns></returns>
+        private static T ParseEnum<T>(string value)
+        {
+            return (T)Enum.Parse(typeof(T), value, true);
+        }
+
         public override void Delete(int id)
         {
             SqlCommand com = new SqlCommand("Delete from SubscriberDetails where SubscriberDetailId = @SubscriberDetailId", connection);
@@ -36,15 +47,15 @@ namespace DBProc.CRUD
 
         public override List<SubscriberDetail> Select()
         {
-            List<SubscriberDetail> subscriberDetails = new List<SubscriberDetail>();
+            creator.list.Clear();
             SqlCommand com = new SqlCommand($"SELECT * FROM SubscriberDetails", connection);
             var r = com.ExecuteReader();
             while (r.Read())
             {
-                subscriberDetails.Add(Create(Convert.ToInt32(r["SubscriberDetailId"]),Convert.ToInt32(r["SubscriberId"]),Convert.ToInt32(r["BookId"]),Convert.ToDateTime(r["DateOfTaking"]),Convert.ToBoolean(r["BookReturn"]), r["BookCondition"].ToString()));
+                creator.FactoryCreate(Convert.ToInt32(r["SubscriberDetailId"]), Convert.ToInt32(r["SubscriberId"]), Convert.ToInt32(r["BookId"]), Convert.ToDateTime(r["DateOfTaking"]), Convert.ToBoolean(r["BookReturn"]), ParseEnum<Condition>(r["BookCondition"].ToString()));
             }
             r.Close();
-            return subscriberDetails;
+            return creator.list;
         }
 
         public override void Update(SubscriberDetail obj)

@@ -10,6 +10,17 @@ namespace DBProc.CRUD
 {
     public class SubscriberCRUD : BasicAcsess<Subscriber>
     {
+        /// <summary>
+        /// Convert string to enum
+        /// </summary>
+        /// <typeparam name="T">jeneric type</typeparam>
+        /// <param name="value">string</param>
+        /// <returns></returns>
+        private static T ParseEnum<T>(string value)
+        {
+            return (T)Enum.Parse(typeof(T), value, true);
+        }
+
         public override void Delete(int id)
         {
             SqlCommand com = new SqlCommand("Delete from Subscribers where SubscriberId = @SubscriberId", connection);
@@ -36,15 +47,16 @@ namespace DBProc.CRUD
 
         public override List<Subscriber> Select()
         {
-            List<Subscriber> subscribers = new List<Subscriber>();
+            creator.list.Clear();
             SqlCommand com = new SqlCommand($"SELECT * FROM Subscribers", connection);
             var r = com.ExecuteReader();
             while (r.Read())
             {
-                subscribers.Add(Create(Convert.ToInt32(r["SubscriberId"]), r["Surname"].ToString(), r["Name"].ToString(), r["MiddleName"].ToString(), r["Sex"].ToString(), Convert.ToDateTime(r["DateOfBirth"])));
+                creator.FactoryCreate(Convert.ToInt32(r["SubscriberId"]), r["Surname"].ToString(), r["Name"].ToString(), r["MiddleName"].ToString(), ParseEnum<SubscriberSex>(r["Sex"].ToString()), Convert.ToDateTime(r["DateOfBirth"]));
             }
             r.Close();
-            return subscribers;
+            return creator.list;
+
         }
 
         public override void Update(Subscriber obj)

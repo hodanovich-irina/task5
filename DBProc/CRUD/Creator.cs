@@ -23,6 +23,7 @@ namespace DBProc.CRUD
         {
             list = new List<T>();
         }
+
         /// <summary>
         /// Method to create object
         /// </summary>

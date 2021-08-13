@@ -13,6 +13,7 @@ namespace DBProc.CRUD
     /// <typeparam name="T">type element</typeparam>
     public abstract class BasicAcsess<T>
     {
+
         /// <summary>
         /// Get instance
         /// </summary>
@@ -48,9 +49,6 @@ namespace DBProc.CRUD
         /// </summary>
         /// <param name="obj">object</param>
         public abstract void Update(T obj);
-        public T Create(params object[] objs)
-        {
-            return (T)Activator.CreateInstance(typeof(T), objs);
-        }
+        
     }
 }

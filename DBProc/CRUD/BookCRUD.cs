@@ -10,6 +10,17 @@ namespace DBProc.CRUD
 {
     public class BookCRUD : BasicAcsess<Book>
     {
+        /// <summary>
+        /// Convert string to enum
+        /// </summary>
+        /// <typeparam name="T">jeneric type</typeparam>
+        /// <param name="value">string</param>
+        /// <returns></returns>
+        private static T ParseEnum<T>(string value)
+        {
+            return (T)Enum.Parse(typeof(T), value, true);
+        }
+
         public override void Delete(int id)
         {
             SqlCommand com = new SqlCommand("Delete from Books where BookId = @BookId", connection);
@@ -34,15 +45,16 @@ namespace DBProc.CRUD
 
         public override List<Book> Select()
         {
-            List<Book> books = new List<Book>();
+            creator.list.Clear();
             SqlCommand com = new SqlCommand($"SELECT * FROM Books", connection);
             var r = com.ExecuteReader();
             while (r.Read())
             {
-                books.Add(Create(Convert.ToInt32(r["BookId"]), r["Author"].ToString(), r["BookName"].ToString(), r["Genre"].ToString()));
+                creator.FactoryCreate(Convert.ToInt32(r["BookId"]), r["Author"].ToString(), r["BookName"].ToString(), ParseEnum<BookGenre>(r["Genre"].ToString()));
             }
             r.Close();
-            return books;
+            return creator.list;
+
         }
 
         public override void Update(Book obj)
