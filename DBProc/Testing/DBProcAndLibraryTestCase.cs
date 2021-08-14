@@ -1,14 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using NUnit.Framework;
-using DBProc;
 using DBProc.CRUD;
-using DBProc.DBFilling;
 using DBProc.FileWork;
-using DBProc.Testing;
 using Library.Elements;
 
 

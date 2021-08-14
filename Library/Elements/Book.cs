@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Library.Elements
+﻿namespace Library.Elements
 {
     /// <summary>
     /// View of book genre
