@@ -8,6 +8,9 @@ using System.Data.SqlClient;
 
 namespace DBProc.CRUD
 {
+    /// <summary>
+    /// Class for CRUD Subscriber information
+    /// </summary>
     public class SubscriberCRUD : BasicAcsess<Subscriber>
     {
         /// <summary>
@@ -21,6 +24,10 @@ namespace DBProc.CRUD
             return (T)Enum.Parse(typeof(T), value, true);
         }
 
+        /// <summary>
+        /// Delete subscriber by id
+        /// </summary>
+        /// <param name="id">Subscriber id</param>
         public override void Delete(int id)
         {
             SqlCommand com = new SqlCommand("Delete from Subscribers where SubscriberId = @SubscriberId", connection);
@@ -31,6 +38,10 @@ namespace DBProc.CRUD
             com.Dispose();
         }
 
+        /// <summary>
+        /// Insert subscriber in db 
+        /// </summary>
+        /// <param name="obj">new subscriber</param>
         public override void Insert(Subscriber obj)
         {
             SqlCommand com = new SqlCommand("Insert Into Subscribers" +
@@ -45,6 +56,10 @@ namespace DBProc.CRUD
             com.Dispose();
         }
 
+        /// <summary>
+        /// Select all inform about subscriber 
+        /// </summary>
+        /// <returns>Collection of subscribers</returns>
         public override List<Subscriber> Select()
         {
             creator.list.Clear();
@@ -58,7 +73,10 @@ namespace DBProc.CRUD
             return creator.list;
 
         }
-
+        /// <summary>
+        /// Update information about subscriber
+        /// </summary>
+        /// <param name="obj">Subscriber</param>
         public override void Update(Subscriber obj)
         {
             SqlCommand com = new SqlCommand("Update Subscribers Set Surname = @Surname,  Name = @Name, MiddleName = @MiddleName, Sex = @Sex, DateOfBirth = @DateOfBirth  Where SubscriberId = @SubscriberId", connection);

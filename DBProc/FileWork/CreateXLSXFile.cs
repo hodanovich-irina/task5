@@ -58,8 +58,15 @@ namespace DBProc.FileWork
             Marshal.ReleaseComObject(xlWorkBook);
             Marshal.ReleaseComObject(xlApp);
         }
+        /// <summary>
+        /// Inner class for work with report
+        /// </summary>
         public static class WorkWithReport
         {
+            /// <summary>
+            /// Create file with information about borrowing books in Excel
+            /// </summary>
+            /// <param name="fileName">Name of file</param>
             public static void CreateInformationAboutBorrowingBooksExcel(string fileName)
             {
                 string path = fileName + ".xlsx";
@@ -67,7 +74,12 @@ namespace DBProc.FileWork
                 CreateExcelDifferentColumn(create.InformationAboutBorrowingBooks(), path, 2);
             }
 
-
+            /// <summary>
+            /// Create file with information about borrowing books by subscriber in Excel
+            /// </summary>
+            /// <param name="start">Start of the period</param>
+            /// <param name="end">End of the period</param>
+            /// <param name="fileName">Name of file</param>
             public static void CreateInformationAboutBorrowingBooksBySubscriberExcel(DateTime start, DateTime end, string fileName)
             {
                 string path = fileName + ".xlsx";
@@ -75,6 +87,10 @@ namespace DBProc.FileWork
                 CreateExcelDifferentColumn(create.InformationAboutBorrowingBooksBySubscriber(start, end), path, 3);
             }
 
+            /// <summary>
+            /// Create file with information about borrowed books by genre in Excel
+            /// </summary>
+            /// <param name="fileName">Name of file</param>
             public static void CreateInformationAboutBorrowedBooksByGenreExcel(string fileName)
             {
                 string path = fileName + ".xlsx";

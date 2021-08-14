@@ -8,6 +8,9 @@ using System.Data.SqlClient;
 
 namespace DBProc.CRUD
 {
+    /// <summary>
+    /// Class for CRUD Book information
+    /// </summary>
     public class BookCRUD : BasicAcsess<Book>
     {
         /// <summary>
@@ -21,6 +24,10 @@ namespace DBProc.CRUD
             return (T)Enum.Parse(typeof(T), value, true);
         }
 
+        /// <summary>
+        /// Delete book by id
+        /// </summary>
+        /// <param name="id">Book id</param>
         public override void Delete(int id)
         {
             SqlCommand com = new SqlCommand("Delete from Books where BookId = @BookId", connection);
@@ -31,6 +38,10 @@ namespace DBProc.CRUD
             com.Dispose();
         }
 
+        /// <summary>
+        /// Insert book in db 
+        /// </summary>
+        /// <param name="obj">new book</param>
         public override void Insert(Book obj)
         {
             SqlCommand com = new SqlCommand("Insert Into Books" +
@@ -42,7 +53,10 @@ namespace DBProc.CRUD
             com.ExecuteNonQuery();
             com.Dispose();
         }
-
+        /// <summary>
+        /// Select all inform about book 
+        /// </summary>
+        /// <returns>Collection of books</returns>
         public override List<Book> Select()
         {
             creator.list.Clear();
@@ -57,6 +71,10 @@ namespace DBProc.CRUD
 
         }
 
+        /// <summary>
+        /// Update information about book
+        /// </summary>
+        /// <param name="obj">Book</param>
         public override void Update(Book obj)
         {
             SqlCommand com = new SqlCommand("Update Books Set Author = @Author,  BookName = @BookName, Genre = @Genre Where BookId = @BookId", connection);

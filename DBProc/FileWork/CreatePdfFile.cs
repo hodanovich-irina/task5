@@ -10,8 +10,17 @@ using PdfSharp.Pdf;
 
 namespace DBProc.FileWork
 {
+    /// <summary>
+    /// Class for create pdf-file
+    /// </summary>
     public class CreatePdfFile
     {
+        /// <summary>
+        /// Method for create pdf-file
+        /// </summary>
+        /// <param name="path">Path of file</param>
+        /// <param name="mas">Array of string</param>
+        /// <param name="kol">Number of params for filling</param>
         public void CreatePdf(string path, string[] mas, int kol)
         {
             System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);

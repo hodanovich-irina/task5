@@ -8,12 +8,29 @@ using Library.Elements;
 
 namespace DBProc
 {
+    /// <summary>
+    /// Class for linq
+    /// </summary>
     public class LINQWork
     {
+        /// <summary>
+        /// Object CRUD for books
+        /// </summary>
         BasicAcsess<Book> books = new BookCRUD();
+        /// <summary>
+        /// Object CRUD for subscribers
+        /// </summary>
         BasicAcsess<Subscriber> subscribers = new SubscriberCRUD();
+        /// <summary>
+        /// Object CRUD for subscriber details
+        /// </summary>
         BasicAcsess<SubscriberDetail> subscriberDetails = new SubscriberDetailCRUD();
-        int id = 0;
+
+
+        /// <summary>
+        /// Method for find The most popular author
+        /// </summary>
+        /// <returns>String with author name</returns>
         public string TheMostPopularAuthor()
         {
             var res = from b in books.Select()
@@ -27,6 +44,11 @@ namespace DBProc
            
             return author;
         }
+
+        /// <summary>
+        /// Method for find the most reading subscriber
+        /// </summary>
+        /// <returns>Subscriber</returns>
         public Subscriber TheMostReadingSubscriber()
         {
             var res = from s in subscribers.Select()
@@ -36,12 +58,17 @@ namespace DBProc
                       select new { Id = v.Key, Kol = v.Count() };
             var z = (res.Select(x => x).Where(x => x.Kol >= res.Max(o => o.Kol))).ToArray();
 
-            id = z[0].Id;
+            int id = z[0].Id;
             var subscriber = (from s in subscribers.Select()
                              where s.SubscriberId == id
                              select s).First();
             return subscriber;
         }
+
+        /// <summary>
+        /// Method for find the most popular genre
+        /// </summary>
+        /// <returns>Genre</returns>
         public BookGenre TheMostPopularGenre()
         {
             var res = from b in books.Select()
@@ -55,6 +82,10 @@ namespace DBProc
 
             return genre;
         }
+        /// <summary>
+        /// Method for find recovery books
+        /// </summary>
+        /// <returns>Collection of recovery books</returns>
         public List<Book> RecoveryBooks()
         {
             var res = (from b in books.Select()

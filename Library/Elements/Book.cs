@@ -11,14 +11,38 @@ namespace Library.Elements
     /// </summary>
     public enum BookGenre
     {
+        /// <summary>
+        /// Detective
+        /// </summary>
         Detective = 1,
+        /// <summary>
+        /// Fantastic
+        /// </summary>
         Fantastic,
+        /// <summary>
+        /// Adventures
+        /// </summary>
         Adventures,
+        /// <summary>
+        /// Novel
+        /// </summary>
         Novel,
+        /// <summary>
+        /// Scientific book
+        /// </summary>
         Scientific,
+        /// <summary>
+        /// Folklore
+        /// </summary>
         Folklore,
+        /// <summary>
+        /// Humor
+        /// </summary>
         Humor,
-        Reference 
+        /// <summary>
+        /// Reference
+        /// </summary>
+        Reference
     }
     /// <summary>
     /// Book description
@@ -67,6 +91,7 @@ namespace Library.Elements
         public Book()
         {
         }
+
         /// <summary>
         /// Method overriding Equals()
         /// </summary>

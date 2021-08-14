@@ -8,17 +8,32 @@ using System.Threading.Tasks;
 
 namespace DBProc.DBFilling
 {
+    /// <summary>
+    /// Class for work with tables
+    /// </summary>
     public class WorkWithTable : IFilling, IFillingByDelegate
     {
+        /// <summary>
+        /// Delegate for filling tabels
+        /// </summary>
         public delegate void DelegateForFilling();
+        /// <summary>
+        /// Event for filling tables
+        /// </summary>
         public event DelegateForFilling FillingTables;
 
+        /// <summary>
+        /// Empty constructor
+        /// </summary>
         public WorkWithTable()
         {
             FillingTables += InsertDateInTableBooks;
             FillingTables += InsertDateInTableSubscriberDetails;
             FillingTables += InsertDateInTableSubscribers;
         }
+        /// <summary>
+        /// Method for insert date in table Books
+        /// </summary>
         public void InsertDateInTableBooks()
         {
             BasicAcsess<Book> books = new BookCRUD();
@@ -38,6 +53,10 @@ namespace DBProc.DBFilling
             books.Insert(new Book(0, "Sergey Dovlatov", " Suitcase", BookGenre.Humor));
             books.Insert(new Book(0, "Vladimir Dal", "Explanatory Dictionary of the Living Great Russian Language", BookGenre.Reference));
         }
+
+        /// <summary>
+        /// Method for insert date in table Subscribers
+        /// </summary>
         public void InsertDateInTableSubscribers() 
         {
             BasicAcsess<Subscriber> subscribers = new SubscriberCRUD();
@@ -50,6 +69,9 @@ namespace DBProc.DBFilling
             subscribers.Insert(new Subscriber(0, "Popok", "Aleksandra", "Petrovna", SubscriberSex.female, new DateTime(2001, 1, 13)));
             subscribers.Insert(new Subscriber(0, "Mitskevich", "Elizabet", "Andreevna", SubscriberSex.female, new DateTime(2004, 5, 27)));
         }
+        /// <summary>
+        /// Method for insert date in table SubscriberDetails
+        /// </summary>
         public void InsertDateInTableSubscriberDetails() 
         {
             BasicAcsess<SubscriberDetail> subscriberDetails = new SubscriberDetailCRUD();
@@ -65,7 +87,9 @@ namespace DBProc.DBFilling
             subscriberDetails.Insert(new SubscriberDetail(0, 5, 5, new DateTime(2021, 8, 13), false, Condition.bad));
 
         }
-
+        /// <summary>
+        /// Method for start filling tables
+        /// </summary>
         public void StartFilling()
         {
             FillingTables?.Invoke();

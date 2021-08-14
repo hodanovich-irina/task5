@@ -8,12 +8,30 @@ using Library.Elements;
 
 namespace DBProc.FileWork
 {
+    /// <summary>
+    /// Class for create report
+    /// </summary>
     public class CreateReport
-    {
+    {       
+        /// <summary>
+        /// Object CRUD for books
+        /// </summary>
         BasicAcsess<Book> books = new BookCRUD();
+
+        /// <summary>
+        /// Object CRUD for subscribers
+        /// </summary>
         BasicAcsess<Subscriber> subscribers = new SubscriberCRUD();
+
+        /// <summary>
+        /// Object CRUD for subscriber details
+        /// </summary>
         BasicAcsess<SubscriberDetail> subscriberDetails = new SubscriberDetailCRUD();
 
+        /// <summary>
+        /// Method for create report with information about borrowing books
+        /// </summary>
+        /// <returns>Array of string</returns>
         public string[] InformationAboutBorrowingBooks() 
         {
             var list_in = (from b in books.Select()
@@ -32,6 +50,11 @@ namespace DBProc.FileWork
             }
             return mas;
         }
+
+        /// <summary>
+        /// Method for create report with information about borrowing books by sunscriber in the period
+        /// </summary>
+        /// <returns>Array of string</returns>
         public string[] InformationAboutBorrowingBooksBySubscriber(DateTime start, DateTime end) 
         {
             var list_in = (from b in books.Select()
@@ -53,6 +76,11 @@ namespace DBProc.FileWork
             }
             return mas;
         }
+
+        /// <summary>
+        /// Method for create report with information about borrowed books by genre
+        /// </summary>
+        /// <returns>Array of string</returns>
         public string[] InformationAboutBorrowedBooksByGenre() 
         {
             var list_in = (from sd in subscriberDetails.Select()

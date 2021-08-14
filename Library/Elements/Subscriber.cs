@@ -80,6 +80,7 @@ namespace Library.Elements
         public Subscriber()
         {
         }
+
         /// <summary>
         /// Method overriding Equals()
         /// </summary>
@@ -96,6 +97,7 @@ namespace Library.Elements
                 return false;
             return true;
         }
+
         /// <summary>
         /// Override method ToString()
         /// </summary>

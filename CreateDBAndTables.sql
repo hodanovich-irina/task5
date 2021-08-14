@@ -1,0 +1,32 @@
+CREATE DATABASE Library
+CREATE TABLE Subscribers
+(
+SubscriberId INT PRIMARY KEY IDENTITY,
+Surname VARCHAR(30),
+Name VARCHAR(20),
+MiddleName VARCHAR(30),
+Sex VARCHAR(10),
+DateOfBirth Date
+);
+CREATE TABLE Books
+(
+BookId INT PRIMARY KEY IDENTITY,
+Author VARCHAR(80),
+BookName VARCHAR(80),
+Genre VARCHAR(30)
+);
+CREATE TABLE SubscriberDetails
+(
+SubscriberDetailId INT PRIMARY KEY IDENTITY,
+SubscriberId INT,
+BookId INT,
+DateOfTaking Date,
+BookReturn BIT,
+BookCondition VARCHAR(20)
+FOREIGN KEY(SubscriberId) REFERENCES Subscribers(SubscriberId)
+ON DELETE CASCADE
+ON UPDATE CASCADE,
+FOREIGN KEY(BookId) REFERENCES Books(BookId)
+ON DELETE CASCADE
+ON UPDATE CASCADE
+);

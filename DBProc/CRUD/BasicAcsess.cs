@@ -20,7 +20,7 @@ namespace DBProc.CRUD
         private static SingletonDB singleton = SingletonDB.GetInstance;
 
         /// <summary>
-        /// Connection to PostgreeSQL
+        /// Connection to db
         /// </summary>
         protected SqlConnection connection = singleton.GetConnection();
 

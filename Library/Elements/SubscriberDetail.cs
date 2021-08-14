@@ -6,10 +6,22 @@ using System.Threading.Tasks;
 
 namespace Library.Elements
 {
+    /// <summary>
+    /// Enum of condition view
+    /// </summary>
     public enum Condition 
     {
+        /// <summary>
+        /// good
+        /// </summary>
         good = 1,
+        /// <summary>
+        /// normal
+        /// </summary>
         normal,
+        /// <summary>
+        /// bad
+        /// </summary>
         bad
     }
     /// <summary>
@@ -17,14 +29,43 @@ namespace Library.Elements
     /// </summary>
     public class SubscriberDetail
     {
+        /// <summary>
+        /// SubscriberDetail id
+        /// </summary>
         public int SubscriberDetailId { get; set; }
+        /// <summary>
+        /// Subscriber id
+        /// </summary>
         public int SubscriberId { get; set; }
 
+        /// <summary>
+        /// Book id
+        /// </summary>
         public int BookId { get; set; }
+        /// <summary>
+        /// Date of taking book
+        /// </summary>
         public DateTime DateOfTaking { get; set; }
+
+        /// <summary>
+        /// book retern(true or false)
+        /// </summary>
         public bool BookReturn { get; set; }
+
+        /// <summary>
+        /// Book condition
+        /// </summary>
         public Condition BookCondition { get; set; }
 
+        /// <summary>
+        /// Constructor with params
+        /// </summary>
+        /// <param name="SubscriberDetailId">SubscriberDetail id</param>
+        /// <param name="SubscriberId">Subscriber id</param>
+        /// <param name="BookId">Book id</param>
+        /// <param name="DateOfTaking">Date of taking book</param>
+        /// <param name="BookReturn">Book return</param>
+        /// <param name="BookCondition">Book condition</param>
         public SubscriberDetail(int SubscriberDetailId,  int SubscriberId, int BookId, DateTime DateOfTaking, bool BookReturn, Condition BookCondition)
         {
             this.SubscriberDetailId = SubscriberDetailId;
@@ -41,6 +82,7 @@ namespace Library.Elements
         public SubscriberDetail()
         {
         }
+
         /// <summary>
         /// Method overriding Equals()
         /// </summary>
@@ -57,6 +99,7 @@ namespace Library.Elements
                 return false;
             return true;
         }
+
         /// <summary>
         /// Override method ToString()
         /// </summary>

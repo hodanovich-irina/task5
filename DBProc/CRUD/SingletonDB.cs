@@ -8,7 +8,7 @@ using System.Data.SqlClient;
 namespace DBProc.CRUD
 {
     /// <summary>
-    /// Class for connection with PostgreeSQL
+    /// Class for connection 
     /// </summary>
     public sealed class SingletonDB
     {
